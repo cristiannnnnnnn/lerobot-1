@@ -18,8 +18,10 @@ import logging
 import time
 from functools import cached_property
 from typing import Any
+
 import os
 from dotenv import load_dotenv
+
 from lerobot.common.cameras.utils import make_cameras_from_configs
 from lerobot.common.errors import DeviceAlreadyConnectedError, DeviceNotConnectedError
 from lerobot.common.motors import Motor, MotorCalibration, MotorNormMode
