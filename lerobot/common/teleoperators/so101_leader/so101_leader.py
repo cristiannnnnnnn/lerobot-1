@@ -16,8 +16,10 @@
 
 import logging
 import time
+
 import os
 from dotenv import load_dotenv
+
 from lerobot.common.errors import DeviceAlreadyConnectedError, DeviceNotConnectedError
 from lerobot.common.motors import Motor, MotorCalibration, MotorNormMode
 from lerobot.common.motors.feetech import (
