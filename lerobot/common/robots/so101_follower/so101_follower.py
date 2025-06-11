@@ -18,7 +18,8 @@ import logging
 import time
 from functools import cached_property
 from typing import Any
-
+import os
+from dotenv import load_dotenv
 from lerobot.common.cameras.utils import make_cameras_from_configs
 from lerobot.common.errors import DeviceAlreadyConnectedError, DeviceNotConnectedError
 from lerobot.common.motors import Motor, MotorCalibration, MotorNormMode
@@ -47,7 +48,7 @@ class SO101Follower(Robot):
         self.config = config
         norm_mode_body = MotorNormMode.DEGREES if config.use_degrees else MotorNormMode.RANGE_M100_100
         self.bus = FeetechMotorsBus(
-            port=self.config.port,
+            port=os.getenv('FOLLOWER_PORT'),
             motors={
                 "shoulder_pan": Motor(1, "sts3215", norm_mode_body),
                 "shoulder_lift": Motor(2, "sts3215", norm_mode_body),

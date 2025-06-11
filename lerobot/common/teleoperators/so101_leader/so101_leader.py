@@ -16,7 +16,8 @@
 
 import logging
 import time
-
+import os
+from dotenv import load_dotenv
 from lerobot.common.errors import DeviceAlreadyConnectedError, DeviceNotConnectedError
 from lerobot.common.motors import Motor, MotorCalibration, MotorNormMode
 from lerobot.common.motors.feetech import (
@@ -42,7 +43,7 @@ class SO101Leader(Teleoperator):
         super().__init__(config)
         self.config = config
         self.bus = FeetechMotorsBus(
-            port=self.config.port,
+            port=os.getenv('LEADER_PORT'),
             motors={
                 "shoulder_pan": Motor(1, "sts3215", MotorNormMode.RANGE_M100_100),
                 "shoulder_lift": Motor(2, "sts3215", MotorNormMode.RANGE_M100_100),
