@@ -408,11 +408,17 @@ def hw_to_dataset_features(
         }
 
     if joint_fts and prefix == "observation":
-        features[f"{prefix}.state"] = {
-            "dtype": "float32",
-            "shape": (len(joint_fts),),
-            "names": list(joint_fts),
-        }
+      # Comment this out when using multi-view or no bbox augmentation
+     additional_states = ['pick_y1', 'pick_x1', 'pick_y2', 'pick_x2', 'place_y1', 'place_x1', 'place_y2', 'place_x2']
+     # Comment this out when using single-view and no bbox augmentation
+     # additional_states = ['pick_y1_top', 'pick_x1_top', 'pick_y2_top', 'pick_x2_top', 'place_y1_top', 'place_x1_top', 'place_y2_top', 'place_x2_top', 'pick_y1_front', 'pick_x1_front', 'pick_y2_front', 'pick_x2_front', 'place_y1_front', 'place_x1_front', 'place_y2_front', 'place_x2_front']
+     # Comment this out when using no bbox augmentation
+     joint_fts = {**joint_fts, **{name: float for name in additional_states}}
+     features[f"{prefix}.state"] = {
+         "dtype": "float32",
+         "shape": (len(joint_fts),),
+         "names": list(joint_fts),
+     }
 
     for key, shape in cam_fts.items():
         features[f"{prefix}.images.{key}"] = {
