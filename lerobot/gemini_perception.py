@@ -60,7 +60,7 @@ def get_2D_bbox(img, prompt=None) -> str:
     If an object is present multiple times, name them uniquely (e.g., "red lego brick 1", "red lego brick 2") """
 
     if prompt is None:
-        prompt = """Analyze the provided image. Detect all the pencils or whiteboard markers (mark these as "pick_object"), and any bins, containers, plates, or designated placement areas (mark these as "place_object").
+        prompt = """Analyze the provided image. Detect all the objects on the table (mark these as "pick_object"), and any bins, containers, plates, or designated placement areas (mark these as "place_object").
         Ignore the robot arm itself if visible.
         Return your findings strictly as a JSON array, following the format specified in the system instructions.   
         Example of the expected JSON output format: [{"pick_object": "blue lego brick", "box_2d": [100, 200, 150, 280]}, {"place_object": "yellow bin", "box_2d": [500, 600, 700, 850]}]
