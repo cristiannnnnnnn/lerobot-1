@@ -58,3 +58,12 @@ python -m lerobot.record_bbox\
     --dataset.num_episodes=20 \
     --dataset.single_task="tape und becher in box"\
     --control.resume=true
+
+
+
+python lerobot/scripts/train.py \
+  --dataset.repo_id=${HF_USER}/record-bbox-2 \
+  --policy.path=lerobot/smolvla_base \
+  --output_dir=outputs/train/act_record-bbox-2 \
+  --job_name=act_record-bbox-2 \
+  --policy.device=mps 
